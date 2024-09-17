@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { ColumnDef, useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table'
+import { ColumnDef, useReactTable, getCoreRowModel, flexRender, sortingFns } from '@tanstack/react-table'
 import { css } from '@emotion/react';
 
 type Player = {
@@ -30,6 +30,8 @@ const columns: ColumnDef<Player, any>[] = [
 ];
 
 function Table() {
+    players.sort((a,b) => b.score - a.score)
+
     const table = useReactTable<Player>({
         data: players,
         columns,
