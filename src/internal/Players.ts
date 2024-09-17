@@ -5,7 +5,7 @@ export type Player = {
     name: string
 }
 
-export function InitPlayers() {
+export function InitPlayers(): Player[] {
     let players: Player[] = []
     for (const p of playerList.players) {
         players.push({score: 0, name: p})
