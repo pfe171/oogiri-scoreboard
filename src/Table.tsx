@@ -1,22 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { ColumnDef, useReactTable, getCoreRowModel, flexRender, sortingFns } from '@tanstack/react-table'
+import { ColumnDef, useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table'
 import { css } from '@emotion/react';
-
-type Player = {
-    score: number
-    name: string
-}
-
-const players: Player[] = [
-    {
-      score: 3,
-      name: 'J.K.ローリング',
-    },
-    {
-      score: 5,
-      name: '夏目漱石',
-    },
-];
+import { Player, InitPlayers } from './internal/Players'
 
 const columns: ColumnDef<Player, any>[] = [
     {
@@ -30,6 +15,7 @@ const columns: ColumnDef<Player, any>[] = [
 ];
 
 function Table() {
+    let players = InitPlayers()
     players.sort((a,b) => b.score - a.score)
 
     const table = useReactTable<Player>({
