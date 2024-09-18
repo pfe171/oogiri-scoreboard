@@ -1,11 +1,14 @@
 /** @jsxImportSource @emotion/react */
+import { Button, Group, NumberInput } from "@mantine/core";
+import "@mantine/core/styles.css";
+import { css } from "@emotion/react";
+import { useState } from "react";
 import {
   ColumnDef,
   useReactTable,
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { css } from "@emotion/react";
 import { Player, InitPlayers } from "./internal/Players";
 
 const columns: ColumnDef<Player, any>[] = [
@@ -19,8 +22,11 @@ const columns: ColumnDef<Player, any>[] = [
   },
 ];
 
+let players = InitPlayers();
+
 function Table() {
-  let players = InitPlayers();
+  const [value, setValue] = useState<string | number>("");
+
   players.sort((a, b) => b.score - a.score);
 
   const table = useReactTable<Player>({
@@ -30,6 +36,10 @@ function Table() {
   });
   return (
     <>
+      <Group justify="flex-end" css={css({ marginRight: "20px" })}>
+        <NumberInput value={value} onChange={setValue} />
+        <Button type="submit">投票</Button>
+      </Group>
       <table align="center" border={1} style={{ borderCollapse: "collapse" }}>
         <thead>
           <tr css={css({ textAlign: "center" })}>
