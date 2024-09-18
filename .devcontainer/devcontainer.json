@@ -1,18 +1,18 @@
 {
-	"name": "Ubuntu",
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
-	"remoteUser": "vscode",
-	"updateRemoteUserUID": true,
-	"customizations": {
-		"vscode": {
-			"extensions": ["esbenp.prettier-vscode"],
-			"settings": {
-				"editor.defaultFormatter": "esbenp.prettier-vscode",
-				"editor.tabSize": 2,
-				"editor.formatOnSave": true
-			}
-		}
-	}
+  "name": "Ubuntu",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "customizations": {
+    "vscode": {
+      "extensions": ["esbenp.prettier-vscode"],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+      }
+    }
+  }
 }
