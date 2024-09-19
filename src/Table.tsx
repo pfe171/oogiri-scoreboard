@@ -85,22 +85,37 @@ function Table() {
         css={css({
           display: "flex",
           textAlign: "center",
+          marginRight: "auto",
+          marginLeft: "auto",
           flexFlow: "column",
+          marginTop: "20px",
           marginBottom: "10px",
+          width: "500px",
+          backgroundColor: "lightgoldenrodyellow",
         })}
       >
         <span>{totalVote}名</span>
         <span>ご協力ありがとうございました。</span>
       </div>
-      <table align="center" border={1} style={{ borderCollapse: "collapse" }}>
+      <table
+        align="center"
+        border={1}
+        style={{
+          borderCollapse: "collapse",
+          backgroundColor: "lightgoldenrodyellow",
+        }}
+      >
         <thead>
-          <tr css={css({ textAlign: "center" })}>
+          <tr css={css({ textAlign: "center", fontSize: "large" })}>
             <td colSpan={3}>途中経過</td>
           </tr>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id}>
+                <th
+                  key={header.id}
+                  style={{ fontSize: "small", padding: "5px" }}
+                >
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -117,7 +132,22 @@ function Table() {
             <tr key={row.id}>
               <td
                 key={row.getVisibleCells()[0].id}
-                style={{ textAlign: "center" }}
+                style={
+                  row.original.rank <= 3
+                    ? {
+                        textAlign: "center",
+                        fontFamily: "Courier New",
+                        fontWeight: "bold",
+                        fontSize: "large",
+                        color: "red",
+                      }
+                    : {
+                        textAlign: "center",
+                        fontFamily: "Courier New",
+                        fontWeight: "bold",
+                        color: "darkorange",
+                      }
+                }
               >
                 {flexRender(
                   row.getVisibleCells()[0].column.columnDef.cell,
@@ -126,7 +156,22 @@ function Table() {
               </td>
               <td
                 key={row.getVisibleCells()[1].id}
-                style={{ textAlign: "center" }}
+                style={
+                  row.original.rank <= 3
+                    ? {
+                        textAlign: "center",
+                        fontFamily: "Courier New",
+                        fontWeight: "bold",
+                        fontSize: "large",
+                        color: "red",
+                      }
+                    : {
+                        textAlign: "center",
+                        fontFamily: "Courier New",
+                        fontWeight: "bold",
+                        color: "darkorange",
+                      }
+                }
               >
                 {flexRender(
                   row.getVisibleCells()[1].column.columnDef.cell,
@@ -135,7 +180,7 @@ function Table() {
               </td>
               <td
                 key={row.getVisibleCells()[2].id}
-                style={{ textAlign: "left" }}
+                style={{ textAlign: "left", padding: "5px", width: "200px" }}
               >
                 {flexRender(
                   row.getVisibleCells()[2].column.columnDef.cell,
