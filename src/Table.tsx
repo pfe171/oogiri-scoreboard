@@ -106,8 +106,16 @@ function Table() {
         }}
       >
         <thead>
-          <tr css={css({ textAlign: "center", fontSize: "large" })}>
-            <td colSpan={3}>途中経過</td>
+          <tr
+            css={css({
+              textAlign: "left",
+              backgroundColor: "navy",
+              color: "white",
+            })}
+          >
+            <td colSpan={3} css={css({ padding: "6px" })}>
+              途中経過
+            </td>
           </tr>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -180,7 +188,17 @@ function Table() {
               </td>
               <td
                 key={row.getVisibleCells()[2].id}
-                style={{ textAlign: "left", padding: "5px", width: "200px" }}
+                style={
+                  row.original.rank <= 3
+                    ? {
+                        textAlign: "left",
+                        padding: "5px",
+                        width: "200px",
+                        fontSize: "large",
+                        fontWeight: "bold",
+                      }
+                    : { textAlign: "left", padding: "5px", width: "200px" }
+                }
               >
                 {flexRender(
                   row.getVisibleCells()[2].column.columnDef.cell,
