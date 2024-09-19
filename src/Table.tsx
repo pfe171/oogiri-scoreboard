@@ -168,6 +168,7 @@ function Table() {
                   row.original.rank <= 3
                     ? {
                         textAlign: "center",
+                        padding: "0 6px 0 6px",
                         fontFamily: "Courier New",
                         fontWeight: "bold",
                         fontSize: "large",
@@ -175,6 +176,7 @@ function Table() {
                       }
                     : {
                         textAlign: "center",
+                        padding: "0 6px 0 6px",
                         fontFamily: "Courier New",
                         fontWeight: "bold",
                         color: "darkorange",
@@ -192,12 +194,16 @@ function Table() {
                   row.original.rank <= 3
                     ? {
                         textAlign: "left",
-                        padding: "5px",
-                        width: "200px",
+                        padding: "5px 0 5px 6px",
+                        width: "210px",
                         fontSize: "large",
                         fontWeight: "bold",
                       }
-                    : { textAlign: "left", padding: "5px", width: "200px" }
+                    : {
+                        textAlign: "left",
+                        padding: "5px 0 5px 6px",
+                        width: "200px",
+                      }
                 }
               >
                 {flexRender(
