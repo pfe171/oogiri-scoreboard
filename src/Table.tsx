@@ -9,9 +9,14 @@ import {
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { Player, InitPlayers, UpdatePlayers } from "./internal/Players";
+import {
+  PlayerData,
+  Player,
+  InitPlayers,
+  UpdatePlayers,
+} from "./internal/Players";
 
-const columns: ColumnDef<Player, any>[] = [
+const columns: ColumnDef<PlayerData, any>[] = [
   {
     accessorKey: "rank",
     header: "順位",
@@ -26,20 +31,32 @@ const columns: ColumnDef<Player, any>[] = [
   },
 ];
 
+function ExtractPlayerData(players: Player[]): PlayerData[] {
+  let result: PlayerData[] = [];
+  for (const p of players) {
+    result.push(p.playerData);
+  }
+
+  return result;
+}
+
 function Table() {
-  const [players, setPlayers] = useState<Player[]>(InitPlayers());
+  const [players, _] = useState<Player[]>(InitPlayers());
+  const [playerData, setPlayerData] = useState<PlayerData[]>(
+    ExtractPlayerData(players)
+  );
   const [vote, setVote] = useState<string | number>(1);
   const [totalVote, setTotalVote] = useState<number>(0);
 
-  const table = useReactTable<Player>({
-    data: players,
+  const table = useReactTable<PlayerData>({
+    data: playerData,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
 
   useEffect(() => {
-    UpdatePlayers(players);
-    setPlayers([...players]);
+    UpdatePlayers(players, Number(vote));
+    setPlayerData([...ExtractPlayerData(players)]);
   }, [totalVote]);
 
   return (
