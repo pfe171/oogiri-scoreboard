@@ -29,9 +29,9 @@ export function InitPlayers(): Player[] {
   for (const p of playerList.players) {
     let strategyArray = Strategies[getRandomInt(Strategies.length)];
     let strategy: Strategy = {
-      point2: strategyArray[0],
+      point2: strategyArray[2],
       point3: strategyArray[1],
-      point4: strategyArray[2],
+      point4: strategyArray[0],
     };
 
     let player: Player = {
@@ -48,7 +48,17 @@ export function InitPlayers(): Player[] {
 export function UpdatePlayers(players: Player[], vote: number) {
   for (let i = 0; i < vote; i++) {
     for (const p of players) {
-      p.playerData.score += 1;
+      let rand = getRandomInt(200);
+      if (rand < p.strategy.point4) {
+        p.playerData.score += 4;
+      } else if (rand < p.strategy.point4 + p.strategy.point3) {
+        p.playerData.score += 3;
+      } else if (
+        rand <
+        p.strategy.point4 + p.strategy.point3 + +p.strategy.point2
+      ) {
+        p.playerData.score += 2;
+      }
     }
   }
 
