@@ -25,7 +25,8 @@ const columns: ColumnDef<Player, any>[] = [
 let players = InitPlayers();
 
 function Table() {
-  const [value, setValue] = useState<string | number>("");
+  const [vote, setVote] = useState<string | number>(1);
+  const [totalVote, setTotalVote] = useState<number>(0);
 
   players.sort((a, b) => b.score - a.score);
 
@@ -34,12 +35,35 @@ function Table() {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
   return (
     <>
       <Group justify="flex-end" css={css({ marginRight: "20px" })}>
-        <NumberInput value={value} onChange={setValue} />
-        <Button type="submit">投票</Button>
+        <NumberInput
+          placeholder="投票人数"
+          suffix="人"
+          value={vote}
+          onChange={setVote}
+        />
+        <Button
+          type="submit"
+          disabled={Number(vote) < 1}
+          onClick={() => setTotalVote((prev) => prev + Number(vote))}
+        >
+          投票
+        </Button>
       </Group>
+      <div
+        css={css({
+          display: "flex",
+          textAlign: "center",
+          flexFlow: "column",
+          marginBottom: "10px",
+        })}
+      >
+        <span>{totalVote}名</span>
+        <span>ご協力ありがとうございました。</span>
+      </div>
       <table align="center" border={1} style={{ borderCollapse: "collapse" }}>
         <thead>
           <tr css={css({ textAlign: "center" })}>
