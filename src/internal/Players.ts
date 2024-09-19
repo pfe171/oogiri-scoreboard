@@ -12,3 +12,10 @@ export function InitPlayers(): Player[] {
   }
   return players;
 }
+
+export function UpdatePlayers(players: Player[]): Player[] {
+  for (const p of players) {
+    p.score += 1;
+  }
+  return players;
+}

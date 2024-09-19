@@ -2,14 +2,14 @@
 import { Button, Group, NumberInput } from "@mantine/core";
 import "@mantine/core/styles.css";
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ColumnDef,
   useReactTable,
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { Player, InitPlayers } from "./internal/Players";
+import { Player, InitPlayers, UpdatePlayers } from "./internal/Players";
 
 const columns: ColumnDef<Player, any>[] = [
   {
@@ -22,19 +22,22 @@ const columns: ColumnDef<Player, any>[] = [
   },
 ];
 
-let players = InitPlayers();
-
 function Table() {
+  const [players, setPlayers] = useState<Player[]>(InitPlayers());
   const [vote, setVote] = useState<string | number>(1);
   const [totalVote, setTotalVote] = useState<number>(0);
-
-  players.sort((a, b) => b.score - a.score);
 
   const table = useReactTable<Player>({
     data: players,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  useEffect(() => {
+    UpdatePlayers(players);
+    players.sort((a, b) => b.score - a.score);
+    setPlayers([...players]);
+  }, [totalVote]);
 
   return (
     <>
