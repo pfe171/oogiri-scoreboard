@@ -13,6 +13,10 @@ import { Player, InitPlayers, UpdatePlayers } from "./internal/Players";
 
 const columns: ColumnDef<Player, any>[] = [
   {
+    accessorKey: "rank",
+    header: "順位",
+  },
+  {
     accessorKey: "score",
     header: "合計",
   },
@@ -35,7 +39,6 @@ function Table() {
 
   useEffect(() => {
     UpdatePlayers(players);
-    players.sort((a, b) => b.score - a.score);
     setPlayers([...players]);
   }, [totalVote]);
 
@@ -70,7 +73,7 @@ function Table() {
       <table align="center" border={1} style={{ borderCollapse: "collapse" }}>
         <thead>
           <tr css={css({ textAlign: "center" })}>
-            <td colSpan={2}>途中経過</td>
+            <td colSpan={3}>途中経過</td>
           </tr>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -101,11 +104,20 @@ function Table() {
               </td>
               <td
                 key={row.getVisibleCells()[1].id}
-                style={{ textAlign: "left" }}
+                style={{ textAlign: "center" }}
               >
                 {flexRender(
                   row.getVisibleCells()[1].column.columnDef.cell,
                   row.getVisibleCells()[1].getContext()
+                )}
+              </td>
+              <td
+                key={row.getVisibleCells()[2].id}
+                style={{ textAlign: "left" }}
+              >
+                {flexRender(
+                  row.getVisibleCells()[2].column.columnDef.cell,
+                  row.getVisibleCells()[2].getContext()
                 )}
               </td>
             </tr>
