@@ -2,7 +2,7 @@
 import { Button, Group, NumberInput } from "@mantine/core";
 import "@mantine/core/styles.css";
 import { css } from "@emotion/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   ColumnDef,
   useReactTable,
@@ -47,6 +47,7 @@ function Table() {
   );
   const [vote, setVote] = useState<string | number>(1);
   const [totalVote, setTotalVote] = useState<number>(0);
+  const initRef = useRef(true);
 
   const table = useReactTable<PlayerData>({
     data: playerData,
@@ -55,6 +56,10 @@ function Table() {
   });
 
   useEffect(() => {
+    if (initRef.current) {
+      initRef.current = false;
+      return;
+    }
     UpdatePlayers(players, Number(vote));
     setPlayerData([...ExtractPlayerData(players)]);
   }, [totalVote]);
