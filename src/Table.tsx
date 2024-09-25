@@ -91,7 +91,7 @@ function Table() {
           marginTop: "20px",
           marginBottom: "10px",
           width: "500px",
-          backgroundColor: "lightgoldenrodyellow",
+          backgroundColor: "#fffaf0",
         })}
       >
         <span>{totalVote}名</span>
@@ -102,18 +102,19 @@ function Table() {
         border={1}
         style={{
           borderCollapse: "collapse",
-          backgroundColor: "lightgoldenrodyellow",
+          backgroundColor: "#fffaf0",
         }}
       >
         <thead>
           <tr
             css={css({
               textAlign: "left",
-              backgroundColor: "navy",
+              backgroundColor: "#000066",
               color: "white",
+              fontWeight: "bold",
             })}
           >
-            <td colSpan={3} css={css({ padding: "6px" })}>
+            <td colSpan={3} css={css({ padding: "6px 0 6px 8px" })}>
               途中経過
             </td>
           </tr>
@@ -122,7 +123,11 @@ function Table() {
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
-                  style={{ fontSize: "small", padding: "5px" }}
+                  style={{
+                    backgroundColor: "#f2f2e0",
+                    fontSize: "x-small",
+                    padding: "5px",
+                  }}
                 >
                   {header.isPlaceholder
                     ? null
@@ -147,13 +152,17 @@ function Table() {
                         fontFamily: "Courier New",
                         fontWeight: "bold",
                         fontSize: "large",
+                        padding: "0 10px 0 10px",
                         color: "red",
+                        minWidth: "40px",
                       }
                     : {
                         textAlign: "center",
                         fontFamily: "Courier New",
                         fontWeight: "bold",
+                        padding: "0 10px 0 10px",
                         color: "darkorange",
+                        minWidth: "40px",
                       }
                 }
               >
@@ -168,18 +177,20 @@ function Table() {
                   row.original.rank <= 3
                     ? {
                         textAlign: "center",
-                        padding: "0 6px 0 6px",
+                        padding: "0 10px 0 10px",
                         fontFamily: "Courier New",
                         fontWeight: "bold",
                         fontSize: "large",
                         color: "red",
+                        minWidth: "40px",
                       }
                     : {
                         textAlign: "center",
-                        padding: "0 6px 0 6px",
+                        padding: "0 10px 0 10px",
                         fontFamily: "Courier New",
                         fontWeight: "bold",
                         color: "darkorange",
+                        minWidth: "40px",
                       }
                 }
               >
@@ -194,15 +205,16 @@ function Table() {
                   row.original.rank <= 3
                     ? {
                         textAlign: "left",
-                        padding: "5px 0 5px 6px",
+                        padding: "8px 0 8px 8px",
                         width: "210px",
-                        fontSize: "large",
-                        fontWeight: "bold",
+                        fontSize: "14.3px",
+                        color: "#535353",
                       }
                     : {
                         textAlign: "left",
-                        padding: "5px 0 5px 6px",
+                        padding: "6px 0 6px 8px",
                         width: "200px",
+                        fontSize: "14.3px",
                       }
                 }
               >
