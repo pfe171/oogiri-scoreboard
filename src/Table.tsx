@@ -64,9 +64,13 @@ function Table() {
     setPlayerData([...ExtractPlayerData(players)]);
   }, [totalVote]);
 
+  function resetAll() {
+    window.location.reload();
+  }
+
   return (
     <>
-      <Group justify="flex-end" css={css({ marginRight: "20px" })}>
+      <Group justify="flex-end" css={css({ margin: "0 20px 10px 0" })}>
         <NumberInput
           placeholder="投票人数"
           suffix="人"
@@ -77,8 +81,18 @@ function Table() {
           type="submit"
           disabled={Number(vote) < 1}
           onClick={() => setTotalVote((prev) => prev + Number(vote))}
+          css={css({ width: "80px" })}
         >
           投票
+        </Button>
+      </Group>
+      <Group justify="flex-end" css={css({ marginRight: "20px" })}>
+        <Button
+          type="submit"
+          onClick={() => resetAll()}
+          css={css({ width: "80px" })}
+        >
+          リセット
         </Button>
       </Group>
       <div
