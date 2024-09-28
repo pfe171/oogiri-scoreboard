@@ -70,23 +70,33 @@ function Table() {
 
   return (
     <>
-      <Group justify="flex-end" css={css({ margin: "0 20px 10px 0" })}>
+      <Group
+        justify="flex-end"
+        css={css({
+          alignItems: "start",
+          height: "70px",
+          margin: "0 20px 10px 0",
+        })}
+      >
         <NumberInput
           placeholder="投票人数"
           suffix="人"
           value={vote}
+          error={
+            Number(vote) < 1 || Number(vote) > 1000000
+              ? "1～1000000の値を入力してください"
+              : ""
+          }
           onChange={setVote}
         />
         <Button
           type="submit"
-          disabled={Number(vote) < 1}
+          disabled={Number(vote) < 1 || Number(vote) > 1000000}
           onClick={() => setTotalVote((prev) => prev + Number(vote))}
           css={css({ width: "80px" })}
         >
           投票
         </Button>
-      </Group>
-      <Group justify="flex-end" css={css({ marginRight: "20px" })}>
         <Button
           type="submit"
           onClick={() => resetAll()}
