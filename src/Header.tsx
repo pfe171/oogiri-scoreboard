@@ -96,9 +96,13 @@ function Header() {
         </a>
         <a
           href="https://github.com/pfe171/oogiri-scoreboard"
+          target="_blank"
           style={{ display: "block", color: "white", marginBottom: "20px" }}
         >
-          <FaGithub css={css({ marginRight: "5px", verticalAlign: "-3px" })} />
+          <FaGithub
+            css={css({ marginRight: "5px", verticalAlign: "-3px" })}
+            target="_blank"
+          />
           Githubリポジトリ
         </a>
       </Menu>
