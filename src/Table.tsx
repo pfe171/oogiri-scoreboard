@@ -75,7 +75,7 @@ function Table() {
         css={css({
           alignItems: "start",
           height: "70px",
-          margin: "0 20px 10px 0",
+          margin: "50px 20px 10px 0",
         })}
       >
         <NumberInput
