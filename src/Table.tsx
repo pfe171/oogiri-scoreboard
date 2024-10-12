@@ -100,7 +100,7 @@ function Table() {
         <Button
           type="submit"
           onClick={() => resetAll()}
-          css={css({ width: "80px" })}
+          css={css({ width: "80px", padding: "0px" })}
         >
           リセット
         </Button>
@@ -116,6 +116,7 @@ function Table() {
           marginBottom: "10px",
           width: "500px",
           backgroundColor: "#fffaf0",
+          fontFamily: "MS UI Gothic",
         })}
       >
         <span>{totalVote}名</span>
@@ -127,6 +128,7 @@ function Table() {
         style={{
           borderCollapse: "collapse",
           backgroundColor: "#fffaf0",
+          fontFamily: "MS UI Gothic",
         }}
       >
         <thead>

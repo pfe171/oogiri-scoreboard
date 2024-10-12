@@ -11,41 +11,27 @@ export const router = createBrowserRouter([
     element: (
       <>
         <Header />
-        <Outlet />
+        <div
+          css={css({
+            backgroundColor: "darkslategray",
+            paddingTop: "20px",
+            paddingBottom: "20px",
+            color: "#858585",
+            minHeight: "100vh",
+          })}
+        >
+          <Outlet />
+        </div>
       </>
     ),
     children: [
       {
         index: true,
-        element: (
-          <div
-            css={css({
-              backgroundColor: "darkslategray",
-              paddingTop: "20px",
-              paddingBottom: "20px",
-              color: "#858585",
-              fontFamily: "MS UI Gothic",
-            })}
-          >
-            ,
-            <Table />
-          </div>
-        ),
+        element: <Table />,
       },
       {
         path: "edit",
-        element: (
-          <div
-            css={css({
-              backgroundColor: "darkslategray",
-              paddingTop: "20px",
-              paddingBottom: "20px",
-              color: "#858585",
-            })}
-          >
-            <EditPlayers />
-          </div>
-        ),
+        element: <EditPlayers />,
       },
     ],
   },
