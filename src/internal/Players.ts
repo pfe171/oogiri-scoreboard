@@ -46,20 +46,29 @@ export function InitPlayers(): Player[] {
 
 // handling voting in "vote" times
 export function UpdatePlayers(players: Player[], vote: number) {
+  let voted = false;
   for (let i = 0; i < vote; i++) {
     for (const p of players) {
       let rand = getRandomInt(200);
       if (rand < p.strategy.point4) {
         p.playerData.score += 4;
+        voted = true;
       } else if (rand < p.strategy.point4 + p.strategy.point3) {
         p.playerData.score += 3;
+        voted = true;
       } else if (
         rand <
         p.strategy.point4 + p.strategy.point3 + +p.strategy.point2
       ) {
         p.playerData.score += 2;
+        voted = true;
       }
     }
+  }
+
+  if (!voted) {
+    let rand = getRandomInt(players.length);
+    players[rand].playerData.score += 2;
   }
 
   // sort by rank
