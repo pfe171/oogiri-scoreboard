@@ -1,6 +1,10 @@
 import playerList from "../../players.json";
 import { Strategies } from "./Strategy.ts";
 
+export type NameTableItem = {
+  name: string;
+};
+
 export type Player = {
   playerData: PlayerData;
   strategy: Strategy;
@@ -24,9 +28,50 @@ function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
 }
 
+function getNameList(): string[] {
+  let names = localStorage.getItem("names");
+  let result: string[] = [];
+  if (names != null) {
+    result = names.split(",");
+  }
+  return result;
+}
+
+function setNameList(names: NameTableItem[]) {
+  let namesString = "";
+  for (const n of names) {
+    namesString = namesString + n.name + ",";
+  }
+  namesString = namesString.slice(0, namesString.length - 1);
+  localStorage.setItem("names", namesString);
+}
+
+export function GetNames(): NameTableItem[] {
+  let names = getNameList();
+  if (names.length == 0) {
+    names = playerList.players;
+  }
+
+  let nameTable: NameTableItem[] = [];
+  for (const n of names) {
+    let name: NameTableItem = { name: n };
+    nameTable.push(name);
+  }
+  return nameTable;
+}
+
+export function UpdateNames(names: NameTableItem[]) {
+  setNameList(names);
+}
+
 export function InitPlayers(): Player[] {
+  let names = getNameList();
+  if (names.length == 0) {
+    names = playerList.players;
+  }
+
   let players: Player[] = [];
-  for (const p of playerList.players) {
+  for (const n of names) {
     let strategyArray = Strategies[getRandomInt(Strategies.length)];
     let strategy: Strategy = {
       point2: strategyArray[2],
@@ -35,7 +80,7 @@ export function InitPlayers(): Player[] {
     };
 
     let player: Player = {
-      playerData: { rank: 0, score: 0, name: p },
+      playerData: { rank: 0, score: 0, name: n },
       strategy: strategy,
     };
 

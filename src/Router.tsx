@@ -17,7 +17,8 @@ export const router = createBrowserRouter([
             paddingTop: "20px",
             paddingBottom: "20px",
             color: "#858585",
-            minHeight: "100vh",
+            minHeight: "calc( 100vh - 50px )",
+            marginTop: "50px",
           })}
         >
           <Outlet />

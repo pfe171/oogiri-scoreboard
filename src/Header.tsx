@@ -28,6 +28,7 @@ var styles = {
   bmMenuWrap: {
     position: "fixed",
     height: "100%",
+    top: "0",
   },
   bmMenu: {
     background: "#373a47",
@@ -54,12 +55,15 @@ function Header() {
     <div
       css={css({
         position: "fixed",
-        display: "flex",
+        top: 0,
+        left: 0,
         justifyContent: "space-between",
         backgroundColor: "slateblue",
         height: "50px",
         width: "100%",
-        padding: "0px 10px",
+        padding: "0 10px",
+        display: "flex",
+        alignItems: "center",
         zIndex: "100",
       })}
     >
@@ -88,7 +92,7 @@ function Header() {
           メインページ
         </a>
         <a
-          href="/players"
+          href="/edit"
           style={{ display: "block", color: "white", marginBottom: "20px" }}
         >
           <IoPeople css={css({ marginRight: "5px", verticalAlign: "-3px" })} />
